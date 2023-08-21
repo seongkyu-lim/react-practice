@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
@@ -118,10 +118,30 @@ class Game extends React.Component {
     }
 }
 
+function Example() {
+    const [count, setCount] = useState(0);
+    // componentDidMount, componentDidUpdate와 비슷합니다
+    useEffect(() => {
+        // 브라우저 API를 이용해 문서의 타이틀을 업데이트합니다
+        document.title = `You clicked ${count} times`;
+    });
+
+
+    return (
+        <div>
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>
+                Click me
+            </button>
+        </div>
+    )
+}
+
 // ========================================
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Game />);
+// root.render(<Game />);
+root.render(<Example />)
 
 function calculateWinner(squares) {
     const lines = [
@@ -142,3 +162,5 @@ function calculateWinner(squares) {
     }
     return null;
 }
+
+
